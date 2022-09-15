@@ -1,0 +1,4 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/my_app/linux",
+    "C_Cpp.errorSquiggles": "Disabled"
+}
