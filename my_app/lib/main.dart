@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, use_key_in_widget_constructors, annotate_overrides, unused_local_variable, deprecated_member_use, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, use_key_in_widget_constructors, annotate_overrides, unused_local_variable, deprecated_member_use, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable, unused_import
 
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void
     main() // MAIN FUNCTION AUTOMATTICALLY GETS EXECUTED BY FLUTTER AT START OF THE APP
@@ -17,17 +18,18 @@ class MyApp
   State<StatefulWidget> createState() {
     // ignore: todo
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
+//BY ADDING _ IN FRONT OF MyAppState, this becomes private, means this class can only be used inside the main.dart file
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
-  void answerQuestion() {
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+  void _answerQuestion() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
-    print(questionIndex);
+    print(_questionIndex);
   }
 
   @override
@@ -45,10 +47,10 @@ class MyAppState extends State<MyApp> {
             appBar: AppBar(title: Text('HOME')),
             body: Column(
               children: [
-                Text(questions[questionIndex]),
+                Question(questions[_questionIndex]),
                 RaisedButton(
                   child: Text('Answer 1'),
-                  onPressed: answerQuestion,
+                  onPressed: _answerQuestion,
                 ),
                 RaisedButton(
                   child: Text('Answer 2'),
@@ -57,7 +59,7 @@ class MyAppState extends State<MyApp> {
                 ),
                 RaisedButton(
                   child: Text('Answer 3'),
-                  onPressed: answerQuestion,
+                  onPressed: _answerQuestion,
                 ),
               ],
             )));
