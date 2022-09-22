@@ -1,7 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, use_key_in_widget_constructors, annotate_overrides, unused_local_variable, deprecated_member_use, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable, unused_import
+// ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, use_key_in_widget_constructors, annotate_overrides, unused_local_variable, deprecated_member_use, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable, unused_import, unused_element, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
 import './question.dart';
+import 'answer.dart'; // answer widget file is imported here
 
 void
     main() // MAIN FUNCTION AUTOMATTICALLY GETS EXECUTED BY FLUTTER AT START OF THE APP
@@ -34,34 +35,36 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    //here BuildContext is a special object-type and context is the object
-    //build returns so-called "widget tree"
     var questions = [
-      'What\'s your favourite color?',
-      'What\'s your favourite animal?',
+      {
+        'questionText': 'What\'s your favourite color?',
+        'answers': ['blue', 'red', 'black', 'green'],
+      },
+      //here BuildContext is a special object-type and context is the object
+      //build returns so-called "widget tree"
+      {
+        'questionText': 'What\'s your favourite animal?',
+        'answers': ['dog', 'cat', 'rabbit', 'horse'],
+      },
     ];
+    //added map class
 
     return MaterialApp(
-        // here MaterialApp is class and still we can pass arguments to it bcz of constructor
-        home: Scaffold(
-            appBar: AppBar(title: Text('HOME')),
-            body: Column(
-              children: [
-                Question(questions[_questionIndex]),
-                RaisedButton(
-                  child: Text('Answer 1'),
-                  onPressed: _answerQuestion,
-                ),
-                RaisedButton(
-                  child: Text('Answer 2'),
-                  onPressed: () =>
-                      print('answer 2 chosen'), //anonymous function
-                ),
-                RaisedButton(
-                  child: Text('Answer 3'),
-                  onPressed: _answerQuestion,
-                ),
-              ],
-            )));
+      // here MaterialApp is class and still we can pass arguments to it bcz of constructor
+      home: Scaffold(
+        appBar: AppBar(title: Text('HOME')),
+        body: Column(
+          children: [
+            Question(
+              questions[_questionIndex]['questionText'],
+            ),
+            (questions[_questionIndex]['answers'] as List<String>).map((Answer){
+              return Answer(answer);
+            })
+          ],
+        ),
+      ),
+    );
   }
 }
+//lifted the state up, by callback functions  by pointer to function address

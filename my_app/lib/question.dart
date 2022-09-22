@@ -18,7 +18,8 @@ class Question extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        margin: EdgeInsets.all(15),
+        margin: EdgeInsets.all(
+            15), //EdgeInsets here is a special type of constructor with some predefined settings and some different behaviour.
         child: Text(
           questionText,
           style: TextStyle(backgroundColor: Colors.yellow, fontSize: 25),
