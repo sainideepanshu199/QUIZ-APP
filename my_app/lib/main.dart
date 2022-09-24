@@ -26,29 +26,35 @@ class MyApp
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  final questions = const [
+    {
+      'questionText': 'What\'s your favourite color?',
+      'answers': ['blue', 'red', 'black', 'green'],
+    },
+    //here BuildContext is a special object-type and context is the object
+    //build returns so-called "widget tree"
+    {
+      'questionText': 'What\'s your favourite animal?',
+      'answers': ['dog', 'cat', 'rabbit', 'horse'],
+    },
+    {
+      'questionText': 'What\'s your favourite car brand?',
+      'answers': ['Mercedes', 'BMW', 'Audi', 'Volvo'],
+    },
+  ];
+  //added map class
   void _answerQuestion() {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
+    if (_questionIndex < questions.length) {
+      print('We have more questions!');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      {
-        'questionText': 'What\'s your favourite color?',
-        'answers': ['blue', 'red', 'black', 'green'],
-      },
-      //here BuildContext is a special object-type and context is the object
-      //build returns so-called "widget tree"
-      {
-        'questionText': 'What\'s your favourite animal?',
-        'answers': ['dog', 'cat', 'rabbit', 'horse'],
-      },
-    ];
-    //added map class
-
     return MaterialApp(
       // here MaterialApp is class and still we can pass arguments to it bcz of constructor
       home: Scaffold(
@@ -56,11 +62,13 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(
-              questions[_questionIndex]['questionText'],
+              questions[_questionIndex]['questionText'] as String,
             ),
-            (questions[_questionIndex]['answers'] as List<String>).map((Answer){
-              return Answer(answer);
-            })
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
+            //... is spread operator . it takes a list  and pull its all values out and add it it surrounding list as individual values.
           ],
         ),
       ),

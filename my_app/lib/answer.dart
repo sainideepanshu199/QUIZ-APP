@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   late final VoidCallback selectHandler;
+  final String answerText;
 
-  Answer(this.selectHandler);
+  Answer(this.selectHandler, this.answerText);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class Answer extends StatelessWidget {
         color: Colors.green,
         textColor: Colors.yellow,
         //Colors is a class with static properties which can be used without instantiating the class
-        child: Text('Answer 1'),
+        child: Text(answerText),
         onPressed: selectHandler,
       ),
     );
