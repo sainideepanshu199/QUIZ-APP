@@ -28,10 +28,16 @@ class MyApp
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalscore = 0;
   final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
-      'answers': ['blue', 'red', 'black', 'green'],
+      'answers': [
+        {'text': 'blue', 'score': 10},
+        {'text': 'red', 'score': 5},
+        {'text': 'black', 'score': 2},
+        {'text': 'green', 'score': 5},
+      ],
     },
     //here BuildContext is a special object-type and context is the object
     //build returns so-called "widget tree"
@@ -45,7 +51,8 @@ class _MyAppState extends State<MyApp> {
     },
   ];
   //added map class
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalscore = _totalscore + score;
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
