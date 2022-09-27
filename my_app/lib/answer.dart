@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  late final VoidCallback selectHandler;
+  final VoidCallback selectHandler;
   final String answerText;
 
   Answer(this.selectHandler, this.answerText);

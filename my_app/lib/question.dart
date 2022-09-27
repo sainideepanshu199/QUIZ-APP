@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 //constructor is made by repeating class name and parameters are added by this.parameter
 //questiontext should be passed from outside by making a constructor
 class Question extends StatelessWidget {
-  late String
+    String
       questionText; //late or final states dart that this value will never change after its initialization in the constructor
 
   Question(this.questionText);
