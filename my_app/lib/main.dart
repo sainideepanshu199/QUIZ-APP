@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_interpolation_to_compose_strings, avoid_print, use_key_in_widget_constructors, annotate_overrides, unused_local_variable, deprecated_member_use, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable, unused_import, unused_element, non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:flutter/material.dart';
-import './question.dart';
+import 'package:my_app/result.dart';
 import 'answer.dart'; // answer widget file is imported here
+import 'quiz.dart'; // added to manage the result of quiz widget in main dart file
+import 'result.dart';
 
 void
     main() // MAIN FUNCTION AUTOMATTICALLY GETS EXECUTED BY FLUTTER AT START OF THE APP
@@ -26,7 +28,7 @@ class MyApp
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  final questions = const [
+  final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
       'answers': ['blue', 'red', 'black', 'green'],
@@ -48,7 +50,7 @@ class _MyAppState extends State<MyApp> {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
-    if (_questionIndex < questions.length) {
+    if (_questionIndex < _questions.length) {
       print('We have more questions!');
     }
   }
@@ -59,18 +61,13 @@ class _MyAppState extends State<MyApp> {
       // here MaterialApp is class and still we can pass arguments to it bcz of constructor
       home: Scaffold(
         appBar: AppBar(title: Text('HOME')),
-        body: Column(
-          children: [
-            Question(
-              questions[_questionIndex]['questionText'] as String,
-            ),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(_answerQuestion, answer);
-            }).toList()
-            //... is spread operator . it takes a list  and pull its all values out and add it it surrounding list as individual values.
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
+              )
+            : Result(),
       ),
     );
   }
