@@ -38,7 +38,7 @@ class Result extends StatelessWidget {
           // ignore: deprecated_member_use
           FlatButton(
             child: Text('Restart Quiz'),
-            textColor: Colors.red,
+            textColor: Colors.blue,
             onPressed: restHandler,
           ),
         ],
