@@ -29,6 +29,15 @@ class MyApp
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   var _totalscore = 0;
+//void _restartQuiz is a method here
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalscore = 0;
+    });
+  }
+  //by adding this thr build method of the MyAppState class will be re-trigerred and it will re-build the widget tree and re-eevaluate the condition
+
   final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
@@ -43,11 +52,21 @@ class _MyAppState extends State<MyApp> {
     //build returns so-called "widget tree"
     {
       'questionText': 'What\'s your favourite animal?',
-      'answers': ['dog', 'cat', 'rabbit', 'horse'],
+      'answers': [
+        {'text': 'dog', 'score': 3},
+        {'text': 'cat', 'score': 5},
+        {'text': 'rabbit', 'score': 8},
+        {'text': 'horse', 'score': 10},
+      ],
     },
     {
       'questionText': 'What\'s your favourite car brand?',
-      'answers': ['Mercedes', 'BMW', 'Audi', 'Volvo'],
+      'answers': [
+        {'text': 'Mercedes', 'score': 2},
+        {'text': 'BMW', 'score': 5},
+        {'text': 'Audi', 'score': 6},
+        {'text': 'Volvo', 'score': 8},
+      ],
     },
   ];
   //added map class
@@ -74,7 +93,8 @@ class _MyAppState extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalscore, _resetQuiz),
+        //_resetQuiz is passed as apointer to resultwidget
       ),
     );
   }
