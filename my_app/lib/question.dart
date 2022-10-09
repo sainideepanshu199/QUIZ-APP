@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 //constructor is made by repeating class name and parameters are added by this.parameter
 //questiontext should be passed from outside by making a constructor
 class Question extends StatelessWidget {
-    String
+  String
       questionText; //late or final states dart that this value will never change after its initialization in the constructor
 
   Question(this.questionText);
@@ -22,7 +22,12 @@ class Question extends StatelessWidget {
             15), //EdgeInsets here is a special type of constructor with some predefined settings and some different behaviour.
         child: Text(
           questionText,
-          style: TextStyle(backgroundColor: Colors.yellow, fontSize: 25),
+          style: TextStyle(
+            backgroundColor: Color.fromARGB(255, 122, 229, 34),
+            fontSize: 25,
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.w800,
+          ),
           textAlign: TextAlign.center,
         )); //questiontext property is referred here
   }

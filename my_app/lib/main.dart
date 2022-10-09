@@ -48,8 +48,6 @@ class _MyAppState extends State<MyApp> {
         {'text': 'green', 'score': 5},
       ],
     },
-    //here BuildContext is a special object-type and context is the object
-    //build returns so-called "widget tree"
     {
       'questionText': 'What\'s your favourite animal?',
       'answers': [
@@ -83,6 +81,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    //here BuildContext is a special object-type and context is the object
+    //build returns so-called "widget tree"{
     return MaterialApp(
       // here MaterialApp is class and still we can pass arguments to it bcz of constructor
       home: Scaffold(
